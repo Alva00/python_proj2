@@ -465,7 +465,7 @@ class ModelEngine(object):
         plt.legend()
         plt.show()
     
-    def model_application(self, dataset):
+    def modelApplication(self, dataset):
         model = self.model
         res = model.predict(dataset)
         return(res)
@@ -521,4 +521,4 @@ if __name__ == "__main__":
     model.modelProcessing(modelname)
     # 模型运用
     # dataset = ...
-    # Out = model.model_application(dataset)
+    # Out = model.modelApplication(dataset)
