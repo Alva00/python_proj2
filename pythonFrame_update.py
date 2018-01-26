@@ -453,7 +453,7 @@ class ModelEngine(object):
         """
             模型处理通用步骤
         """
-        model = self.choose_model(modelname)
+        model = self.chooseModel(modelname)
         model.fit(self.data_train, self.label_train)
         score = model.score(self.data_test, self.label_test)
         self.model = model
