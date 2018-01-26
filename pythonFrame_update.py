@@ -347,7 +347,7 @@ class ModelEngine(object):
         self.label_train = DataFrame([])
         self.label_test = DataFrame([])
     
-    def set_Y(self, name):
+    def setY(self, name):
         """
             选择决定属性Y， 将其他归为dataset
         """
@@ -358,20 +358,20 @@ class ModelEngine(object):
                 dataset_column.append(x)
         self.dataset = self.dataset[dataset_column]
     
-    def add_X(self, xSeries):
+    def addX(self, xSeries):
         """
             将指标集中的指标加入X属性中
         """
         self.dataset = self.dataset.join(xSeries)
 
-    def del_X(self, attributenameslist):
+    def delX(self, attributenameslist):
         """
             删掉多个无用属性
         """
         data = self.dataset.drop(attributenameslist, axis=1)  # 删除这些属性
         self.dataset = data
 
-    def split_Data(self):
+    def splitData(self):
         """
             划分数据集
         """
@@ -416,7 +416,7 @@ class ModelEngine(object):
         self.label_test = label_test
 
     
-    def choose_model(self, modelname):
+    def chooseModel(self, modelname):
         ### 决策树 ###
         if modelname == "DecisionTree":
             res = tree.DecisionTreeRegressor()
@@ -449,7 +449,7 @@ class ModelEngine(object):
             res = MLPRegressor()
         return res
 
-    def model_Processing(self, modelname):
+    def modelProcessing(self, modelname):
         """
             模型处理通用步骤
         """
@@ -475,13 +475,13 @@ if __name__ == "__main__":
     """
         命令行解析
     """
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument("filename", type=str, help="the directory of all the .csv file")
-    # parser.add_argument("decision_attribute", type=str, help="the attribute you want to predict")
-    # parser.add_argument("-m", "--model", type=str, default='KNN', help="the mmodel used to do this task")
-    # parser.add_argument("-p", "--preprocess", type=int, default=1,  help=" preprocessing or not")
-    # parser.add_argument("-i", "--indicatorcalculate", type=int, default=1,  help=" calculate indicator")
-    # args = parser.parse_args()
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument("filename", type=str, help="the directory of all the .csv file")
+#     parser.add_argument("decision_attribute", type=str, help="the attribute you want to predict")
+#     parser.add_argument("-m", "--model", type=str, default='KNN', help="the mmodel used to do this task")
+#     parser.add_argument("-p", "--preprocess", type=int, default=1,  help=" preprocessing or not")
+#     parser.add_argument("-i", "--indicatorcalculate", type=int, default=1,  help=" calculate indicator")
+#     args = parser.parse_args()
 
     """
         加载数据
@@ -514,11 +514,11 @@ if __name__ == "__main__":
     """
     modelname = "KNN"
     model = ModelEngine(newDataset)
-    model.set_Y(decision_attribute)
-    model.add_X(indicators)
-    model.del_X('date')
-    model.split_Data()
-    model.model_Processing(modelname)
+    model.setY(decision_attribute)
+    model.addX(indicators)
+    model.delX('date')
+    model.splitData()
+    model.modelProcessing(modelname)
     # 模型运用
     # dataset = ...
     # Out = model.model_application(dataset)
